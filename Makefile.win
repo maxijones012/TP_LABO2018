@@ -1,0 +1,55 @@
+# Project: tpfinalTMPL
+# Makefile created by Dev-C++ 5.11
+
+CPP      = g++.exe -D__DEBUG__
+CC       = gcc.exe -D__DEBUG__
+WINDRES  = windres.exe
+OBJ      = main.o lib/orm/orm.o lib/utils/utils.o src/empleado/empleado.o src/categoria/categoria.o src/cliente/cliente.o src/proveedor/proveedor.o src/producto/producto.o src/orden/orden.o src/orden_det/orden_det.o
+LINKOBJ  = main.o lib/orm/orm.o lib/utils/utils.o src/empleado/empleado.o src/categoria/categoria.o src/cliente/cliente.o src/proveedor/proveedor.o src/producto/producto.o src/orden/orden.o src/orden_det/orden_det.o
+LIBS     = -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib32" -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib32" -static-libgcc  "../../../../../../../../Program Files (x86)/PostgreSQL/9.3/lib/libpq.lib" -m32 -g3
+INCS     = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"C:/Program Files (x86)/PostgreSQL/9.3/include"
+CXXINCS  = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++" -I"C:/Program Files (x86)/PostgreSQL/9.3/include"
+BIN      = tpfinalTMPL.exe
+CXXFLAGS = $(CXXINCS) -m32 -g3
+CFLAGS   = $(INCS) -m32 -g3
+RM       = rm.exe -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before $(BIN) all-after
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CC) $(LINKOBJ) -o $(BIN) $(LIBS)
+
+main.o: main.c
+	$(CC) -c main.c -o main.o $(CFLAGS)
+
+lib/orm/orm.o: lib/orm/orm.c
+	$(CC) -c lib/orm/orm.c -o lib/orm/orm.o $(CFLAGS)
+
+lib/utils/utils.o: lib/utils/utils.c
+	$(CC) -c lib/utils/utils.c -o lib/utils/utils.o $(CFLAGS)
+
+src/empleado/empleado.o: src/empleado/empleado.c
+	$(CC) -c src/empleado/empleado.c -o src/empleado/empleado.o $(CFLAGS)
+
+src/categoria/categoria.o: src/categoria/categoria.c
+	$(CC) -c src/categoria/categoria.c -o src/categoria/categoria.o $(CFLAGS)
+
+src/cliente/cliente.o: src/cliente/cliente.c
+	$(CC) -c src/cliente/cliente.c -o src/cliente/cliente.o $(CFLAGS)
+
+src/proveedor/proveedor.o: src/proveedor/proveedor.c
+	$(CC) -c src/proveedor/proveedor.c -o src/proveedor/proveedor.o $(CFLAGS)
+
+src/producto/producto.o: src/producto/producto.c
+	$(CC) -c src/producto/producto.c -o src/producto/producto.o $(CFLAGS)
+
+src/orden/orden.o: src/orden/orden.c
+	$(CC) -c src/orden/orden.c -o src/orden/orden.o $(CFLAGS)
+
+src/orden_det/orden_det.o: src/orden_det/orden_det.c
+	$(CC) -c src/orden_det/orden_det.c -o src/orden_det/orden_det.o $(CFLAGS)

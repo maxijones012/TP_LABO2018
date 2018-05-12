@@ -1,0 +1,13 @@
+Desarrollo tp final de Lenguaje C
+
+
+Interface asignada a los psedoObjetos
+
+- findAll
+
+- showObj
+
+- saveObj
+
+- findByKey
+
