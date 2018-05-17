@@ -262,6 +262,7 @@ int getExtension_Impl(void *self)
 void setFechaNac_Impl(void *self,char *fechanac)
 {
 	obj_empleado *obj = this(self);	
+	strcpy(obj->fecha_nac,fechanac);
 }
 //----------------------------------------------------
 void setNombre_Impl(void *self,char *nombre)
