@@ -24,13 +24,14 @@
 /*Declaraciones*/
 void ingresarEmpleado(int argc, char *argv[]);
 void ingresarCategoria(int argc, char *argv[]);
+void listado();
 //void mostrarArgumentos(int argc, char *argv[]){
 
 
 void cli_show(void *c)
 {
   	obj_cliente *cli = (obj_cliente*)c;
-    	printf("ID:%d\n",cli->getClienteId(cli));
+    printf("ID:%d\n",cli->getClienteId(cli));
 }
 
 
@@ -53,9 +54,9 @@ int main(int argc, char *argv[])
   	//mostrarArgumentos(argc, argv);
   
   
-  	if  (!strcmp(argv[1],"-a")){
+  	if(!strcmp(argv[1],"-a")){
 			if (!strcmp(argv[2],"-empleado")){
-			ingresarEmpleado(argc, argv);		
+				ingresarEmpleado(argc, argv);		
 		}
 
 		if(!strcmp(argv[2],"-categoria")){
@@ -63,30 +64,16 @@ int main(int argc, char *argv[])
 		}
 	}else{
 		if(!strcmp(argv[1],"-l")){
-			emp = empleado_new();
-  			listObj(emp,NULL,true,NULL);
-			
-			listObj(prov,NULL,true,NULL);
-			printf("\n----------------------------------\n");
-			cat = categoria_new();
-			listObj(cat,NULL,true,NULL);
-			printf("\n----------------------------------\n"); 
-			
-			p = producto_new();
-			listObj(p,NULL,true,NULL);
-			printf("\n----------------------------------\n");
-			
+			listado(); 
 		}
 	
 	}
-	
-  
-  
   
   	//esto estaba comentado
-	cat = categoria_new();
-	listObj(cat,NULL,true,NULL);  
-  	printf("\n----------------------------------\n");
+	emp = empleado_new();
+  	listObj(emp,NULL,true,NULL);
+	printf("\n----------------------------------\n");
+	free(emp);
   	system("PAUSE");	
   	return 0;
 }
@@ -98,6 +85,10 @@ void ingresarEmpleado(int argc, char *argv[]){
 	
 			char *nombre; char *apellido; int reportar_a; int extension; char *fecha_nac;
 			int i=3;
+			
+			obj_empleado *cat2;
+			cat2 = empleado_new();
+				
   			for (i; i< argc; i++){
 				switch (i){				
 					case 3: 
@@ -108,37 +99,27 @@ void ingresarEmpleado(int argc, char *argv[]){
 						fecha_nac = argv[i];
 					case 6:	
 						reportar_a = atoi(argv[i]);
+						//printf("reporta a : %d\n", reportar_a);
 					case 7:
 						extension = atoi(argv[i]);
+						//printf("extension: %d\n",extension);
 				}
-				//creamos el objeto
-				obj_empleado *cat;
-				cat = empleado_new();
-				
-				
+
 				//printf("apellido : %s\n", apellido);
-				cat -> setNombre(cat, nombre);
-				
-				cat -> setApellido(cat, apellido);
-				
-				cat -> setFechaNac(cat, fecha_nac);
-				
-				cat -> setReportaA(cat, reportar_a);
-				
-				cat -> setExtension(cat, extension);
-				
-				
-				cat -> saveObj(cat);			
-				/*if(!saveObj_empleadoImpl(cat)==1){
-				//	printf("salvo el objeto");	
-				}*/
-				
-				cat -> showObj(cat);
-				
-				//cat-> findbykey(cat));
 				
 				//habria que liberar el objeto
-			}
+			}	
+			cat2 -> setNombre(cat2, nombre);				
+			cat2 -> setApellido(cat2, apellido);				
+			cat2 -> setFechaNac(cat2, fecha_nac);				
+			cat2 -> setReportaA(cat2, reportar_a);				
+			cat2 -> setExtension(cat2, extension);				
+				
+			cat2 -> saveObj(cat2);			
+				
+			cat2 -> showObj(cat2);
+			
+				
 };
 
 
@@ -152,6 +133,32 @@ void ingresarCategoria(int argc, char *argv[]){
 		
 		cat1 -> saveObj(cat1);
 		cat1 -> showObj(cat1);
+		
+};
+
+
+void listado(){
+	obj_empleado *emp,*e_row;
+	obj_categoria *cat,*c_row;
+	obj_cliente *cli,*cli_row;
+	obj_proveedor *prov  ,*pv_row;
+	obj_producto *p,*p_rw;
+	obj_orden *o;
+	obj_orden_det *odet;
+
+
+	emp = empleado_new();
+	listObj(emp,NULL,true,NULL);
+	printf("\n----------------------------------\n");
+	listObj(prov,NULL,true,NULL);
+	printf("\n----------------------------------\n");
+	cat = categoria_new();
+	listObj(cat,NULL,true,NULL);
+	printf("\n----------------------------------\n"); 
+	
+	p = producto_new();
+	listObj(p,NULL,true,NULL);
+	printf("\n----------------------------------\n");
 };
 
 //-------------------------------------------------------------
